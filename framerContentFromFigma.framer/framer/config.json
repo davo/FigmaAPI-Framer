@@ -1,0 +1,27 @@
+{
+  "orientation" : 0,
+  "updateDelay" : 2,
+  "designModeSelected" : 0,
+  "cachedDeviceHeight" : 812,
+  "contentScale" : 1,
+  "cachedDeviceWidth" : 375,
+  "fullScreen" : false,
+  "deviceType" : "apple-iphone-x-silver",
+  "sharedPrototype" : true,
+  "propertyPanelToggleStates" : {
+
+  },
+  "projectId" : "B566CC34-8A6B-446B-A2FA-B54F286C9733",
+  "deviceOrientation" : 0,
+  "selectedHand" : "",
+  "showBezel" : true,
+  "foldedCodeRanges" : [
+    "{0, 49}",
+    "{50, 1634}",
+    "{1685, 1481}",
+    "{3167, 2754}",
+    "{5922, 1459}",
+    "{7382, 301}"
+  ],
+  "deviceScale" : "fit"
+}
