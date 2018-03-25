@@ -1,7 +1,6 @@
 # Figma API Wrapper for Framer - Work in progress
 
-![Importing Figma artwork in Framer. Images on this prototype were requested using the new Figma API](https://i.imgur.com/2izbyZJ.gif)
-
+Importing Figma artwork in Framer. Images on this prototype were requested using the new Figma API.
 
 ### Documentation
 Purpose: This demo aims to show how to fetch content from a Figma File.
@@ -20,7 +19,7 @@ Purpose: This demo aims to show how to fetch content from a Figma File.
 
 ### Configuration
 
-	1. Open the secret.coffee in /modules and add your own Figma Personal Token
+1. Open the secret.coffee in /modules and add your own Figma Personal Token
 
 ```coffeescript
 exports.token = 'ai3-57wg5gbhe9-cspl-gclno-deheq-1qfrpxq6ax7x'
@@ -29,8 +28,8 @@ exports.fileurl = 'https://www.figma.com/file/FileKey/YourFile'
 
 ## For more documentation
 
-	- [Figma Web API](https://www.figma.com/developers)
+- [Figma Web API](https://www.figma.com/developers)
 
-	- [Figma API Documentation](https://www.figma.com/developers/docs)
+- [Figma API Documentation](https://www.figma.com/developers/docs)
 
-	- [Figma API Global Props](https://www.figma.com/developers/docs#global-properties)
+- [Figma API Global Props](https://www.figma.com/developers/docs#global-properties)
