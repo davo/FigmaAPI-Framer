@@ -1,3 +1,27 @@
+# Documentation
+# Purpose: This demo aims to show how to fetch content from a Figma File.
+
+# API
+
+# requestFigmaFile
+# This will fetch all the Canvas objects from the file url & loop to get the IDs for each Canvas. 
+
+# requestFigmaImage
+# This function will fetch an image from a canvas ID.
+
+# addToFigmaImageObject (WIP)
+# This function will append the response from requestFigmaImage() and it will create a new Figma Image Layer.
+
+# loadImageFromFigmaCDN (WIP)
+# This function will create a new Figma Image Layer and it will preload the image into the session cache.
+
+# setImageInFigmaImageLayer (WIP)
+# This function include the image into the already created Figma Image Layer and it will push the Image Layer into the Page Component.
+
+# Configuration
+
+# 1. Open the secret.coffee in /modules and add your own Figma Personal Token
+
 # Token
 
 { token, fileurl } = require 'secret'
@@ -27,10 +51,10 @@ figmaImages = {}
 
 addToFigmaImageObject = (image, nodeId, name) ->	
 	figmaImages[name] = {image, nodeId, name}
-	loadImage image, nodeId, name
+	loadImageFromFigmaCDN image, nodeId, name
 	return figmaImages
 
-loadImage = (imageUrl, nodeId, name) ->
+loadImageFromFigmaCDN = (imageUrl, nodeId, name) ->
 
 	figmaImageLayer = new FigmaImageLayer
 		name: 'figmaImageLayer'+name
@@ -38,11 +62,11 @@ loadImage = (imageUrl, nodeId, name) ->
 	_.sortBy(figmaImages, ['name'])
 	
 	figmaImage = new Image()
-	figmaImage.onload setFigmaImageLayer(figmaImageLayer, name)
+	figmaImage.onload setImageInFigmaImageLayer(figmaImageLayer, name)
 	figmaImage.src = imageUrl
  	
 
-setFigmaImageLayer = (figmaImageLayer, name) ->
+setImageInFigmaImageLayer = (figmaImageLayer, name) ->
 
 	updateStatus 'Creating Image Layers...'
 	
