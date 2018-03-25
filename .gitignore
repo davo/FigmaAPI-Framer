@@ -1,2 +1,43 @@
-/assets/
-/framerContentFromFigma.framer/modules/secret.coffee
+# Framer Git Ignore
+
+# General OSX
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Framer Specific
+.*.html
+.app.js
+framerContentFromFigma.framer/framer/*.old*
+framerContentFromFigma.framer/framer/.*.hash
+framerContentFromFigma.framer/framer/backup.coffee
+framerContentFromFigma.framer/framer/backups/*
+framerContentFromFigma.framer/framer/manifest.txt
+framerContentFromFigma.framer/framer/preview.png
+framerContentFromFigma.framer/framer/social-*x*.png
+framerContentFromFigma.framer/modules/secret.coffee
+
+assets/
