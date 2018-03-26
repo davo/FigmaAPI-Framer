@@ -33,3 +33,20 @@ exports.fileurl = 'https://www.figma.com/file/FileKey/YourFile'
 - [Figma API Documentation](https://www.figma.com/developers/docs)
 
 - [Figma API Global Props](https://www.figma.com/developers/docs#global-properties)
+
+## Todo
+
+* [ ] Create API Wrapper Module.
+* [ ] Fetch GET single `file` from URL.
+* [ ] Parse canvas from a given figma JSON file.
+* [ ] Parse props from a `FRAME` node type.
+* [ ] Parse props from a `VECTOR` node.
+* [ ] Parse props from a `LINE` vector.
+* [ ] Parse props from a `ELLIPSE` vector.
+* [ ] Parse props from a `RECTANGLE` vector.
+* [ ] Parse props from a `TEXT` object.
+* [ ] Parse props from a `TypeStyle` node.
+* [ ] Fetch GET `images` from node.
+* [ ] Fetch GET `projects`.
+* [ ] Fetch GET `comments`.
+* [ ] Fetch POST `comments`.
