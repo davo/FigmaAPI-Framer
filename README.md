@@ -1,6 +1,6 @@
 # Figma API Wrapper for Framer - Work in progress
 
-Importing Figma artwork in Framer. Images on this prototype were requested using the new Figma API.
+![Importing Figma artwork in Framer. Images on this prototype were requested using the new Figma API.](https://user-images.githubusercontent.com/76307/37884359-9d48eb8c-307d-11e8-9b3f-2c87b52e7789.gif)
 
 ### Documentation
 Purpose: This demo aims to show how to fetch content from a Figma File.
