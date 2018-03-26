@@ -50,3 +50,8 @@ exports.fileurl = 'https://www.figma.com/file/FileKey/YourFile'
 * [ ] Fetch GET `projects`.
 * [ ] Fetch GET `comments`.
 * [ ] Fetch POST `comments`.
+
+
+## Notes
+
+- Scale: The `/v1/images/:key` ENDPOINT provides a set of path parameters to have in mind. For instance `scale` will need to be exposed to the current screen density on the prototype.
