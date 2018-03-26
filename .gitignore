@@ -38,5 +38,6 @@ framerContentFromFigma.framer/framer/backups/*
 framerContentFromFigma.framer/framer/manifest.txt
 framerContentFromFigma.framer/framer/preview.png
 framerContentFromFigma.framer/framer/social-*x*.png
+framerContentFromFigma.framer/modules/secret.coffee
 
 assets/
