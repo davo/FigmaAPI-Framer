@@ -1,0 +1,1 @@
+require '../figma.coffee'

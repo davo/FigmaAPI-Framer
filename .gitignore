@@ -41,3 +41,4 @@ framerContentFromFigma.framer/framer/social-*x*.png
 framerContentFromFigma.framer/modules/secret.coffee
 
 assets/
+node_modules/

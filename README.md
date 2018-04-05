@@ -26,6 +26,11 @@ exports.token = 'ai3-57wg5gbhe9-cspl-gclno-deheq-1qfrpxq6ax7x'
 exports.fileurl = 'https://www.figma.com/file/FileKey/YourFile'
 ```
 
+## Related Projects
+
+https://github.com/expressjs/body-parser
+https://github.com/jamesmcnamara/shades
+
 ## For more documentation
 
 - [Figma Web API](https://www.figma.com/developers)
