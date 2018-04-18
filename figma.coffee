@@ -8,9 +8,7 @@ chroma = require 'chroma-js'
 _ = require 'lodash'
 
 require './src/moreutils.coffee'
-
-token = '247-7d2608ba-08be-4fd2-ab2b-f2cee4b57e10'
-fileurl = 'OviPa73PatGLnoXEwnp2qdUv'
+require './src/secret.coffee'
 
 client = Figma.Client({
 	personalAccessToken: token
