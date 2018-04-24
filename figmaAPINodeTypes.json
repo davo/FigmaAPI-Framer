@@ -1,0 +1,936 @@
+{
+  "fileFormatTypes": [
+    {
+      "desc": "An RGBA color",
+      "props": [
+        {
+          "name": "r",
+          "type": "Number",
+          "content": "Red channel value, between 0 and 1"
+        },
+        {
+          "name": "g",
+          "type": "Number",
+          "content": "Green channel value, between 0 and 1"
+        },
+        {
+          "name": "b",
+          "type": "Number",
+          "content": "Blue channel value, between 0 and 1"
+        },
+        {
+          "name": "a",
+          "type": "Number",
+          "content": "Alpha channel value, between 0 and 1"
+        }
+      ],
+      "name": "Color"
+    },
+    {
+      "desc": "Format and size to export an asset at",
+      "props": [
+        {
+          "name": "suffix",
+          "type": "String",
+          "content": "File suffix to append to all filenames"
+        },
+        {
+          "name": "format",
+          "type": "String",
+          "div": "s.createElement(\"div\",null,\"Image type, string enum that supports values \",s.createElement(\"span\",{className=l.string},'\"JPG\"'),\", \",s.createElement(\"span\",{className=l.string},'\"PNG\"'),\", and \",s.createElement(\"span\",{className=l.string},'\"SVG\"'))"
+        },
+        {
+          "name": "constraint",
+          "type": "Constraint",
+          "content": "Constraint that determines sizing of exported asset"
+        }
+      ],
+      "name": "ExportSetting"
+    },
+    {
+      "desc": "Sizing constraint for exports",
+      "props": [
+        {
+          "name": "type",
+          "type": "String",
+          "div": "s.createElement(\"div\",{className=l.constraints},s.createElement(\"div\",null,\"Type of constraint to apply; string enum with potential values below\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"SCALE\"'),\"= Scale by \",s.createElement(\"span\",{className=l.literal},\"value\")),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"WIDTH\"'),\"= Scale proportionally and set width to \",s.createElement(\"span\",{className=l.literal},\"value\")),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"HEIGHT\"'),\"= Scale proportionally and set height to \",s.createElement(\"span\",{className=l.literal},\"value\")))"
+        },
+        {
+          "name": "value",
+          "type": "Number",
+          "div": "s.createElement(\"div\",null,\"See \",s.createElement(\"span\",{className=l.literal},\"type\"),\" property for effect of this field\")"
+        }
+      ],
+      "name": "Constraint"
+    },
+    {
+      "desc": "A rectangle that expresses a bounding box in absolute coordinates",
+      "props": [
+        {
+          "name": "x",
+          "type": "Number",
+          "content": "X coordinate of top left corner of the rectangle"
+        },
+        {
+          "name": "y",
+          "type": "Number",
+          "content": "Y coordinate of top left corner of the rectangle"
+        },
+        {
+          "name": "width",
+          "type": "Number",
+          "content": "Width of the rectangle"
+        },
+        {
+          "name": "height",
+          "type": "Number",
+          "content": "Height of the rectangle"
+        }
+      ],
+      "name": "Rectangle"
+    },
+    {
+      "desc": "Enum describing how layer blends with layers below",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,\"This type is a string enum with the following possible values\")"
+        },
+        {
+          "div": "s.createElement(\"div\",null,s.createElement(\"div\",null,\"Normal blends=\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"PASS_THROUGH\"'),\" \",s.createElement(\"span\",{className=l.desc},\"(Only applicable to objects with children)\")),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"NORMAL\"')),s.createElement(\"br\",null),s.createElement(\"div\",null,\"Darken=\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"DARKEN\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"MULTIPLY\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"LINEAR_BURN\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"COLOR_BURN\"')),s.createElement(\"br\",null),s.createElement(\"div\",null,\"Lighten=\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"LIGHTEN\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"SCREEN\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"LINEAR_DODGE\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"COLOR_DODGE\"')),s.createElement(\"br\",null),s.createElement(\"div\",null,\"Contrast=\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"OVERLAY\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"SOFT_LIGHT\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"HARD_LIGHT\"')),s.createElement(\"br\",null),s.createElement(\"div\",null,\"Inversion=\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"DIFFERENCE\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"EXCLUSION\"')),s.createElement(\"br\",null),s.createElement(\"div\",null,\"Component=\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"HUE\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"SATURATION\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"COLOR\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"LUMINOSITY\"')))"
+        }
+      ],
+      "name": "BlendMode"
+    },
+    {
+      "desc": "Layout constraint relative to containing Frame",
+      "props": [
+        {
+          "name": "vertical",
+          "type": "String",
+          "div": "s.createElement(\"div\",{className=l.constraints},s.createElement(\"div\",null,\"Vertical constraint as an enum\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"TOP\"'),\"= Node is laid out relative to top of the containing frame\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"BOTTOM\"'),\"= Node is laid out relative to bottom of the containing frame\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"CENTER\"'),\"= Node is vertically centered relative to containing frame\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"TOP_BOTTOM\"'),\"= Both top and bottom of node are constrained relative to containing frame (node stretches with frame)\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"SCALE\"'),\"= Node scales vertically with containing frame\"))"
+        },
+        {
+          "name": "horizontal",
+          "type": "String",
+          "div": "s.createElement(\"div\",{className=l.constraints},s.createElement(\"div\",null,\"Horizontal constraint as an enum\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"LEFT\"'),\"= Node is laid out relative to left of the containing frame\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"RIGHT\"'),\"= Node is laid out relative to right of the containing frame\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"CENTER\"'),\"= Node is horizontally centered relative to containing frame\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"LEFT_RIGHT\"'),\"= Both left and right of node are constrained relative to containing frame (node stretches with frame)\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"SCALE\"'),\"= Node scales horizontally with containing frame\"))"
+        }
+      ],
+      "name": "LayoutConstraint"
+    },
+    {
+      "desc": "Guides to align and place objects within a frame",
+      "props": [
+        {
+          "name": "pattern",
+          "type": "String",
+          "div": "s.createElement(\"div\",{className=l.constraints},s.createElement(\"div\",null,\"Orientation of the grid as a string enum\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"COLUMNS\"'),\"= Vertical grid\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"ROWS\"'),\"= Horizontal grid\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"GRID\"'),\"= Square grid\"))"
+        },
+        {
+          "name": "sectionSize",
+          "type": "Number",
+          "content": "Width of column grid or height of row grid or square grid spacing"
+        },
+        {
+          "name": "visible",
+          "type": "Boolean",
+          "content": "Is the grid currently visible?"
+        },
+        {
+          "name": "color",
+          "type": "Color",
+          "content": "Color of the grid"
+        },
+        {
+          "div": "s.createElement(\"div\",null,\"The following properties are only meaningful for directional grids (COLUMNS or ROWS)\")"
+        },
+        {
+          "name": "alignment",
+          "type": "String",
+          "div": "s.createElement(\"div\",{className=l.constraints},s.createElement(\"div\",null,\"Positioning of grid as a string enum\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"MIN\"'),\"= Grid starts at the left or top of the frame\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"MAX\"'),\"= Grid starts at the right or bottom of the frame\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"CENTER\"'),\"= Grid is center aligned\"))"
+        },
+        {
+          "name": "gutterSize",
+          "type": "Number",
+          "content": "Spacing in between columns and rows"
+        },
+        {
+          "name": "offset",
+          "type": "Number",
+          "content": "Spacing before the first column or row"
+        },
+        {
+          "name": "count",
+          "type": "Number",
+          "content": "Number of columns or rows"
+        }
+      ],
+      "name": "LayoutGrid"
+    },
+    {
+      "desc": "A visual effect such as a shadow or blur",
+      "props": [
+        {
+          "name": "type",
+          "type": "String",
+          "div": "s.createElement(\"div\",{className=l.constraints},s.createElement(\"div\",null,\"Type of effect as a string enum\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"INNER_SHADOW\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"DROP_SHADOW\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"LAYER_BLUR\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"BACKGROUND_BLUR\"')))"
+        },
+        {
+          "name": "visible",
+          "type": "Boolean",
+          "content": "Is the effect active?"
+        },
+        {
+          "name": "radius",
+          "type": "Number",
+          "content": "Radius of the blur effect (applies to shadows as well)"
+        },
+        {
+          "div": "s.createElement(\"div\",null,\"The following properties are for shadows only=\")"
+        },
+        {
+          "name": "color",
+          "type": "Color",
+          "content": "The color of the shadow"
+        },
+        {
+          "name": "blendMode",
+          "type": "BlendMode",
+          "content": "Blend mode of the shadow"
+        },
+        {
+          "name": "offset",
+          "type": "Vector",
+          "content": "How far the shadow is projected in the x and y directions"
+        }
+      ],
+      "name": "Effect"
+    },
+    {
+      "desc": "A solid color, gradient, or image texture that can be applied as fills or strokes",
+      "props": [
+        {
+          "name": "type",
+          "type": "String",
+          "div": "s.createElement(\"div\",{className=l.constraints},s.createElement(\"div\",null,\"Type of paint as a string enum\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"SOLID\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"GRADIENT_LINEAR\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"GRADIENT_RADIAL\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"GRADIENT_ANGULAR\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"GRADIENT_DIAMOND\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"IMAGE\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"EMOJI\"')))"
+        },
+        {
+          "name": "visible",
+          "type": "Boolean",
+          "def": "true",
+          "content": "Is the paint enabled?"
+        },
+        {
+          "name": "opacity",
+          "type": "Number",
+          "def": "1",
+          "content": "Overall opacity of paint (colors within the paint can also have opacity values which would blend with this)"
+        },
+        {
+          "div": "s.createElement(\"div\",null,\"For solid paints=\")"
+        },
+        {
+          "name": "color",
+          "type": "Color",
+          "content": "Solid color of the paint"
+        },
+        {
+          "div": "s.createElement(\"div\",null,\"For gradient paints=\")"
+        },
+        {
+          "name": "gradientHandlePositions",
+          "type": "Vector[]",
+          "div": "s.createElement(\"div\",null,\"This field contains three vectors, each of which are a position in normalized object space (normalized object space is if the top left corner of the bounding box of the object is (0, 0) and the bottom right is (1,1)). The first position corresponds to the start of the gradient (value 0 for the purposes of calculating gradient stops), the second position is the end of the gradient (value 1), and the third handle position determines the width of the gradient (only relevant for non-linear gradients). See image examples below=\",s.createElement(\"div\",{className=l.gradientExamples},s.createElement(\"img\",{src=\"/images/developer_app/linear.png\"}),s.createElement(\"img\",{src=\"/images/developer_app/angular.png\"}),s.createElement(\"img\",{src=\"/images/developer_app/diamond.png\"}),s.createElement(\"img\",{src=\"/images/developer_app/radial.png\"})))"
+        },
+        {
+          "name": "gradientStops",
+          "type": "ColorStop[]",
+          "content": "Positions of key points along the gradient axis\n        with the colors anchored there. Colors along the gradient\n        are interpolated smoothly between neighboring gradient stops."
+        },
+        {
+          "div": "s.createElement(\"div\",null,\"For image paints=\")"
+        },
+        {
+          "name": "scaleMode",
+          "type": "String",
+          "div": "s.createElement(\"div\",{className=l.constraints},s.createElement(\"div\",null,\"Image scaling mode\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"FILL\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"FIT\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"TILE\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"STRETCH\"')))"
+        }
+      ],
+      "name": "Paint"
+    },
+    {
+      "desc": "A 2d vector",
+      "props": [
+        {
+          "name": "x",
+          "type": "Number",
+          "content": "X coordinate of the vector"
+        },
+        {
+          "name": "y",
+          "type": "Number",
+          "content": "Y coordinate of the vector"
+        }
+      ],
+      "name": "Vector"
+    },
+    {
+      "desc": "A relative offset within a frame",
+      "props": [
+        {
+          "name": "node_id",
+          "type": "String",
+          "content": "Unique id specifying the frame."
+        },
+        {
+          "name": "node_offset",
+          "type": "Vector",
+          "content": "2d vector offset within the frame."
+        }
+      ],
+      "name": "FrameOffset"
+    },
+    {
+      "desc": "A position color pair representing a gradient stop",
+      "props": [
+        {
+          "name": "position",
+          "type": "Number",
+          "content": "Value between 0 and 1 representing position along gradient axis"
+        },
+        {
+          "name": "color",
+          "type": "Color",
+          "content": "Color attached to corresponding position"
+        }
+      ],
+      "name": "ColorStop"
+    },
+    {
+      "desc": "Metadata for character formatting",
+      "props": [
+        {
+          "name": "fontFamily",
+          "type": "String",
+          "content": "Font family of text (standard name)"
+        },
+        {
+          "name": "fontPostScriptName",
+          "type": "String",
+          "content": "PostScript font name"
+        },
+        {
+          "name": "italic",
+          "type": "Boolean",
+          "content": "Is text italicized?"
+        },
+        {
+          "name": "fontWeight",
+          "type": "Number",
+          "content": "Numeric font weight"
+        },
+        {
+          "name": "fontSize",
+          "type": "Number",
+          "content": "Font size in px"
+        },
+        {
+          "name": "textAlignHorizontal",
+          "type": "String",
+          "div": "s.createElement(\"div\",{className=l.constraints},s.createElement(\"div\",null,\"Horizontal text alignment as string enum\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"LEFT\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"RIGHT\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"CENTER\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"JUSTIFIED\"')))"
+        },
+        {
+          "name": "textAlignVertical",
+          "type": "String",
+          "div": "s.createElement(\"div\",{className=l.constraints},s.createElement(\"div\",null,\"Vertical text alignment as string enum\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"TOP\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"CENTER\"')),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"BOTTOM\"')))"
+        },
+        {
+          "name": "letterSpacing",
+          "type": "Number",
+          "content": "Space between characters in px"
+        },
+        {
+          "name": "fills",
+          "type": "Paint[]",
+          "content": "Paints applied to characters"
+        },
+        {
+          "name": "lineHeightPx",
+          "type": "Number",
+          "content": "Line height in px"
+        },
+        {
+          "name": "lineHeightPercent",
+          "type": "Number",
+          "content": "Line height as a percentage of normal line height"
+        }
+      ],
+      "name": "TypeStyle"
+    },
+    {
+      "desc": "A description of a master component. Helps you identify which component instances are attached to",
+      "props": [
+        {
+          "name": "name",
+          "type": "String",
+          "content": "The name of the component"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "content": "The description of the component as entered in the editor"
+        }
+      ],
+      "name": "Component"
+    }
+  ],
+  "nodeProps": [
+    {
+      "desc": "The root node",
+      "props": [
+        {
+          "name": "children",
+          "type": "Node[]",
+          "content": "An array of canvases attached to the document"
+        }
+      ],
+      "name": "DOCUMENT"
+    },
+    {
+      "desc": "Represents a single page",
+      "props": [
+        {
+          "name": "children",
+          "type": "Node[]",
+          "content": "An array of top level layers on the canvas"
+        },
+        {
+          "name": "backgroundColor",
+          "type": "Color",
+          "content": "Background color of the canvas"
+        },
+        {
+          "name": "exportSettings",
+          "type": "ExportSetting[]",
+          "def": "[]",
+          "content": "An array of export settings representing images to export from the canvas"
+        }
+      ],
+      "name": "CANVAS"
+    },
+    {
+      "desc": "A node of fixed size containing other nodes",
+      "props": [
+        {
+          "name": "children",
+          "type": "Node[]",
+          "content": "An array of nodes that are direct children of this node"
+        },
+        {
+          "name": "backgroundColor",
+          "type": "Color",
+          "content": "Background color of the node"
+        },
+        {
+          "name": "exportSettings",
+          "type": "ExportSetting[]",
+          "def": "[]",
+          "content": "An array of export settings representing images to export from node"
+        },
+        {
+          "name": "blendMode",
+          "type": "BlendMode",
+          "content": "How this node blends with nodes behind it in the scene (see blend mode section for more details)"
+        },
+        {
+          "name": "preserveRatio",
+          "type": "Boolean",
+          "def": "false",
+          "content": "Keep height and width constrained to same ratio"
+        },
+        {
+          "name": "constraints",
+          "type": "LayoutConstraint",
+          "content": "Horizontal and vertical layout constraints for node"
+        },
+        {
+          "name": "transitionNodeID",
+          "type": "String",
+          "def": "null",
+          "content": "Node ID of node to transition to in prototyping"
+        },
+        {
+          "name": "opacity",
+          "type": "Number",
+          "def": "1",
+          "content": "Opacity of the node"
+        },
+        {
+          "name": "absoluteBoundingBox",
+          "type": "Rectangle",
+          "content": "Bounding box of the node in absolute space coordinates"
+        },
+        {
+          "name": "clipsContent",
+          "type": "Boolean",
+          "content": "Does this node clip content outside of its bounds?"
+        },
+        {
+          "name": "layoutGrids",
+          "type": "LayoutGrid[]",
+          "div": "s.createElement(\"div\",null,s.createElement(\"span\",{className=l.defaults},\"default= []\"),\" An array of layout grids attached to this node (see layout grids section for more details). \",s.createElement(\"span\",{className=l.literal},\"GROUP\"),\" nodes do not have this attribute\")"
+        },
+        {
+          "name": "effects",
+          "type": "Effect[]",
+          "def": "[]",
+          "content": "An array of effects attached to this node (see effects section for more details)"
+        },
+        {
+          "name": "isMask",
+          "type": "Boolean",
+          "def": "false",
+          "content": "Does this node mask sibling nodes in front of it?"
+        }
+      ],
+      "name": "FRAME"
+    },
+    {
+      "desc": "A logical grouping of nodes",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,\"See properties for \",s.createElement(\"a\",{href=\"#frame-props\"},s.createElement(\"span\",{className=l.literal},\"FRAME\")))"
+        }
+      ],
+      "name": "GROUP"
+    },
+    {
+      "desc": "A vector network, consisting of vertices and edges",
+      "props": [
+        {
+          "name": "exportSettings",
+          "type": "ExportSetting[]",
+          "def": "[]",
+          "content": "An array of export settings representing images to export from node"
+        },
+        {
+          "name": "blendMode",
+          "type": "BlendMode",
+          "content": "How this node blends with nodes behind it in the scene (see blend mode section for more details)"
+        },
+        {
+          "name": "preserveRatio",
+          "type": "Boolean",
+          "def": "false",
+          "content": "Keep height and width constrained to same ratio"
+        },
+        {
+          "name": "constraints",
+          "type": "LayoutConstraint",
+          "content": "Horizontal and vertical layout constraints for node"
+        },
+        {
+          "name": "transitionNodeID",
+          "type": "String",
+          "def": "null",
+          "content": "Node ID of node to transition to in prototyping"
+        },
+        {
+          "name": "opacity",
+          "type": "Number",
+          "def": "1",
+          "content": "Opacity of the node"
+        },
+        {
+          "name": "absoluteBoundingBox",
+          "type": "Rectangle",
+          "content": "Bounding box of the node in absolute space coordinates"
+        },
+        {
+          "name": "effects",
+          "type": "Effect[]",
+          "def": "[]",
+          "content": "An array of effects attached to this node (see effects section for more details)"
+        },
+        {
+          "name": "isMask",
+          "type": "Boolean",
+          "def": "false",
+          "content": "Does this node mask sibling nodes in front of it?"
+        },
+        {
+          "name": "fills",
+          "type": "Paint[]",
+          "def": "[]",
+          "content": "An array of fill paints applied to the node"
+        },
+        {
+          "name": "strokes",
+          "type": "Paint[]",
+          "def": "[]",
+          "content": "An array of stroke paints applied to the node"
+        },
+        {
+          "name": "strokeWeight",
+          "type": "Number",
+          "content": "The weight of strokes on the node"
+        },
+        {
+          "name": "strokeAlign",
+          "type": "String",
+          "div": "s.createElement(\"div\",{className=l.constraints},s.createElement(\"div\",null,\"Where stroke is drawn relative to the vector outline as a string enum\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"INSIDE\"'),\"= draw stroke inside the shape boundary\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"OUTSIDE\"'),\"= draw stroke outside the shape boundary\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"CENTER\"'),\"= draw stroke centered along the shape boundary\"))"
+        }
+      ],
+      "name": "VECTOR"
+    },
+    {
+      "desc": "A group that has a boolean operation applied to it",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,\"Has all the properties of \",s.createElement(\"a\",{href=\"#vector-props\"},s.createElement(\"span\",{className=l.literal},\"VECTOR\")),\", plus=\")"
+        },
+        {
+          "name": "children",
+          "type": "Node[]",
+          "content": "An array of nodes that are being boolean operated on"
+        }
+      ],
+      "name": "BOOLEAN"
+    },
+    {
+      "desc": "A regular star shape",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,\"See properties for \",s.createElement(\"a\",{href=\"#vector-props\"},s.createElement(\"span\",{className=l.literal},\"VECTOR\")))"
+        }
+      ],
+      "name": "STAR"
+    },
+    {
+      "desc": "A straight line",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,\"See properties for \",s.createElement(\"a\",{href=\"#vector-props\"},s.createElement(\"span\",{className=l.literal},\"VECTOR\")))"
+        }
+      ],
+      "name": "LINE"
+    },
+    {
+      "desc": "An ellipse",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,\"See properties for \",s.createElement(\"a\",{href=\"#vector-props\"},s.createElement(\"span\",{className=l.literal},\"VECTOR\")))"
+        }
+      ],
+      "name": "ELLIPSE"
+    },
+    {
+      "desc": "A regular n-sided polygon",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,\"See properties for \",s.createElement(\"a\",{href=\"#vector-props\"},s.createElement(\"span\",{className=l.literal},\"VECTOR\")))"
+        }
+      ],
+      "name": "REGULAR_POLYGON"
+    },
+    {
+      "desc": "A rectangle",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,\"Has all the properties of \",s.createElement(\"a\",{href=\"#vector-props\"},s.createElement(\"span\",{className=l.literal},\"VECTOR\")),\", plus=\")"
+        },
+        {
+          "name": "cornerRadius",
+          "type": "Number",
+          "content": "Radius of each corner of the rectangle"
+        }
+      ],
+      "name": "RECTANGLE"
+    },
+    {
+      "desc": "A text box",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,\"Has all the properties of \",s.createElement(\"a\",{href=\"#vector-props\"},s.createElement(\"span\",{className=l.literal},\"VECTOR\")),\", plus=\")"
+        },
+        {
+          "name": "characters",
+          "type": "String",
+          "content": "Text contained within text box"
+        },
+        {
+          "name": "style",
+          "type": "TypeStyle",
+          "content": "Style of text including font family and weight (see type style section for more information)"
+        },
+        {
+          "name": "characterStyleOverrides",
+          "type": "Number[]",
+          "content": "\n        Array with same number of elements as characeters in text box, each element is a reference to the styleOverrideTable\n        defined below and maps to the corresponding character in the characters field. Elements with value 0 have the default\n        type style"
+        },
+        {
+          "name": "styleOverrideTable",
+          "type": "Map<Number,TypeStyle>",
+          "div": "s.createElement(\"div\",null,\"Map from ID to \",s.createElement(g,{type=\"TypeStyle\"}),\" for looking up style overrides\")"
+        }
+      ],
+      "name": "TEXT"
+    },
+    {
+      "desc": "A rectangular region of the canvas that can be exported",
+      "props": [
+        {
+          "name": "exportSettings",
+          "type": "ExportSetting[]",
+          "content": "An array of export settings representing images to export from this node"
+        },
+        {
+          "name": "absoluteBoundingBox",
+          "type": "Rectangle",
+          "content": "Bounding box of the node in absolute space coordinates"
+        }
+      ],
+      "name": "SLICE"
+    },
+    {
+      "desc": "A node that can have instances created of it that share the same properties",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,\"See properties for \",s.createElement(\"a\",{href=\"#frame-props\"},s.createElement(\"span\",{className=l.literal},\"FRAME\")))"
+        }
+      ],
+      "name": "COMPONENT"
+    },
+    {
+      "desc": "An instance of a component, changes to the component result in the same changes applied to the instance",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,\"Has all the properties of \",s.createElement(\"a\",{href=\"#frame-props\"},s.createElement(\"span\",{className=l.literal},\"FRAME\")),\", plus=\")"
+        },
+        {
+          "name": "componentId",
+          "type": "String",
+          "div": "s.createElement(\"div\",null,\"ID of component that this instance came from, refers to \",s.createElement(\"span\",{className=l.literal},\"components\"),\" table (see endpoints section below)\")"
+        }
+      ],
+      "name": "INSTANCE"
+    }
+  ],
+  "webhookTypes": [
+    {
+      "desc": "A description of an HTTP webhook (from Figma back to your application)",
+      "props": [
+        {
+          "name": "id",
+          "type": "String",
+          "content": "The ID of the webhook"
+        },
+        {
+          "name": "event_type",
+          "type": "WebhookEvent",
+          "content": "The event to trigger this webhook on"
+        },
+        {
+          "name": "file_key",
+          "type": "String",
+          "content": "The file key you are subscribed to for updates"
+        },
+        {
+          "name": "team_id",
+          "type": "String",
+          "content": "The team id you are subscribed to for updates"
+        },
+        {
+          "name": "status",
+          "type": "WebhookStatus",
+          "content": "The status of the webhook"
+        },
+        {
+          "name": "client_id",
+          "type": "String",
+          "content": "The client ID of the OAuth application that registered this webhook, if any"
+        },
+        {
+          "name": "passcode",
+          "type": "String",
+          "content": "The passcode that will be passed back to the webhook endpoint"
+        },
+        {
+          "name": "endpoint",
+          "type": "String",
+          "content": "The endpoint that will be hit when the webhook is triggered"
+        },
+        {
+          "name": "description",
+          "type": "String",
+          "content": "Optiona user provided description or name for the webhook. This is provided to help make maintaining a number of webhooks more convenient. Max length 140 characters."
+        },
+        {
+          "name": "responses",
+          "type": "WebhookResponses",
+          "content": "The most recent response and first error response of contiguous errors, if any"
+        }
+      ],
+      "name": "Webhook"
+    },
+    {
+      "desc": "The most recent response and first error response of contiguous errors, if any",
+      "props": [
+        {
+          "name": "most_recent",
+          "type": "WebhookResponse",
+          "content": "The result of the most recent webhook call"
+        },
+        {
+          "name": "first_error",
+          "type": "WebhookResponse",
+          "content": "If the last response was an error, the first response after the last successful call. This is useful when your webhook starts failing to see when the first failure occurred"
+        }
+      ],
+      "name": "WebhookResponses"
+    },
+    {
+      "desc": "The result from calling a webhook endpoint in the past",
+      "props": [
+        {
+          "name": "payload",
+          "type": "WebhookFilePayload",
+          "content": "The payload sent to your webhook endpoint"
+        },
+        {
+          "name": "status",
+          "type": "WebhookStatus",
+          "content": "The status of the webhook after calling your webhook endpoint"
+        },
+        {
+          "name": "response_timestamp",
+          "type": "String",
+          "content": "The UTC ISO 8601 time when your webhook endpoint was called"
+        }
+      ],
+      "name": "WebhookResponse"
+    },
+    {
+      "desc": "An enum representing the type of error encountered when calling a webhook endpoint",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"ACTIVE\"'),\"= The webhook is healthy and active\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"PAUSED\"'),\"= The webhook is healthy but paused\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"ERROR\"'),\"= Unhandled error\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"ERROR=ACCESS\"'),\"= You no longer have access to this file\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"ERROR=BAD_RESPONSE\"'),\"= The webhook endpoint returned an error status code\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"ERROR=TIMEOUT\"'),\"= Request to the webhook endpoint timed out\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"ERROR=CONNECTION\"'),\"= Failed to establish a connection to webhook endpoint\"),s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"ERROR=PASSCODE\"'),\"= The passcode returned by the webhook endpoint did not match the webhook record\"))"
+        }
+      ],
+      "name": "WebhookStatus"
+    },
+    {
+      "desc": "The payload sent to a webhook endpoint for a file update",
+      "props": [
+        {
+          "name": "webhook_id",
+          "type": "Number",
+          "content": "The id of the webhook that caused the callback"
+        },
+        {
+          "name": "passcode",
+          "type": "String",
+          "content": "The passcode specified when the webhook was created, should match what was initially provided"
+        },
+        {
+          "name": "event_type",
+          "type": "WebhookEvent",
+          "content": "The type of event that triggered this webhook call"
+        },
+        {
+          "name": "file_name",
+          "type": "String",
+          "content": "The name of the file that updated"
+        },
+        {
+          "name": "thumbnail_url",
+          "type": "String",
+          "content": "A URL to the thumbnail of the file after the update"
+        },
+        {
+          "name": "file_key",
+          "type": "String",
+          "content": "The key of the file that was updated"
+        },
+        {
+          "name": "timestamp",
+          "type": "String",
+          "content": "UTC ISO 8601 timestamp of when file was last updated"
+        }
+      ],
+      "name": "WebhookFilePayload"
+    },
+    {
+      "desc": "An enum of types of events to trigger webhooks on",
+      "props": [
+        {
+          "div": "s.createElement(\"div\",null,s.createElement(\"div\",null,s.createElement(\"span\",{className=l.string},'\"FILE_UPDATE\"'),\"= Triggers whenever the specified file is updated (debounced to 2 min intervals or when the file is closed by everyone)\"))"
+        }
+      ],
+      "name": "WebhookEvent"
+    }
+  ],
+  "apiTypes": [
+    {
+      "desc": "A comment or reply left by a user",
+      "props": [
+        {
+          "name": "id",
+          "type": "String",
+          "content": "Unique identifier for comment"
+        },
+        {
+          "name": "client_meta",
+          "type": "Vector|FrameOffset",
+          "content": "The position of the comment. Either the absolute coordinates on the canvas or a relative offset within a frame"
+        },
+        {
+          "name": "file_key",
+          "type": "String",
+          "content": "The file in which the comment lives"
+        },
+        {
+          "name": "parent_id",
+          "type": "String",
+          "content": "If present, the id of the comment to which this is the reply"
+        },
+        {
+          "name": "user",
+          "type": "User",
+          "content": "The user who left the comment"
+        },
+        {
+          "name": "created_at",
+          "type": "Date",
+          "content": "The time at which the comment was left"
+        },
+        {
+          "name": "resolved_at",
+          "type": "Date",
+          "content": "If set, when the comment was resolved"
+        },
+        {
+          "name": "order_id",
+          "type": "Number",
+          "content": "Only set for top level comments. The number displayed with the comment in the UI"
+        }
+      ],
+      "name": "Comment"
+    },
+    {
+      "desc": "A description of a user",
+      "props": [
+        {
+          "name": "handle",
+          "type": "String",
+          "content": "Name of the user"
+        },
+        {
+          "name": "img_url",
+          "type": "String",
+          "content": "URL link to the user's profile image"
+        }
+      ],
+      "name": "User"
+    }
+  ]
+}
