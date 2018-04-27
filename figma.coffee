@@ -1,42 +1,46 @@
-#
-#
-# https://gist.github.com/fgilio/230ccd514e9381fafa51608fcf137253
-
 Figma = require 'figma-js'
 chroma = require 'chroma-js'
+shades = require 'shades'
 
 _ = require 'lodash'
 
 require './src/moreutils.coffee'
-require './src/secret.coffee'
+{ token, fileid } = require './src/secret.coffee'
 
 client = Figma.Client({
 	personalAccessToken: token
 })
 
-class Rect extends Layer
-	constructor: (props={}) ->
-		_.assign props,
-			name: 'FigmaNodeRect'
-			# blending: getBlendingMode(options.node)
+{ file, fileImages, comments, postComment, teamProjects, projectFiles } = client
 
-		super props
+cache = {}
 
-		Utils.define @, 'nodeType', props.nodeType
+getFigma = (fn, id, params) ->
+	new Promise (resolve, reject) ->
+		isParams = params
+		if cache[id]
+			console.log cache[id]
+			data = cache[id]
+			resolve data
+		else
+			console.log 'fetching', id
+			fn(id, isParams).then((_ref) ->
+				data = _ref.data
+				cache[id] = data
+				console.log 'stored', cache[id]
+				resolve data
+				return
+			).catch reject
+		return
 
-	# @setProps()
 
-	# setProps: (props) ->
-	# 	Object.keys(@props).map (k) =>
-    #     	@[k] = @props[k]
+loadFigma = (id) -> getFigma file, id
 
+# Utilities
 
-poll = (fn, retries = Infinity, timeoutBetweenAttempts = 1000) ->
-  Promise.resolve().then(fn).catch (err) ->
-    if retries-- > 0
-      return delay(timeoutBetweenAttempts).then(fn).catch(retry)
-    throw err
-    return
+getImageURL = (hash) ->
+  squash = hash.split('-').join('')
+  'url(https://s3-us-west-2.amazonaws.com/figma-alpha/img/' + squash.substring(0, 4) + '/' + squash.substring(4, 8) + '/' + squash.substring(8) + ')'
 
 getColorFromNode = (node) ->
 
@@ -46,7 +50,6 @@ getColorFromNode = (node) ->
 
 	return color
 
-
 getColorFromDocument = (data) ->
 
 	c = data.document.children[0].backgroundColor
@@ -54,19 +57,6 @@ getColorFromDocument = (data) ->
 	color = chroma.gl c.r, c.g, c.b
 
 	return color
-
-	# validate = ({data}) ->
-	# 	# print data
-	# 	unless !data
-	# 	# or data.content.status isnt 200
-	# 	# 	console.log res
-	# 		# print data.document.children[0].backgroundColor
-	# 		return getBackgroundColor data
-
-
-	# 		# return c
-
-	# poll(client.file(fileurl).then(validate), 2, 5000)
 
 getBlendingMode = (node) ->
 
@@ -81,103 +71,76 @@ getBlendingMode = (node) ->
 		else
 			framerLayerBlending = Blending.normal
 
-
 	return framerLayerBlending
 
-getNodeType = (data) ->
 
-	console.log data.document.name
-	console.log data.document.type
-
-	console.log data
-
-	console.log _.find(data, (node) -> node.type is 'CANVAS' )
+NodeTypes = ['BOOLEAN' , 'CANVAS' , 'COMPONENT' , 'DOCUMENT' , 'ELLIPSE' , 'FRAME' , 'GROUP' , 'INSTANCE' , 'LINE' , 'RECTANGLE' , 'REGULAR_POLYGON' , 'SLICE' , 'STAR' , 'TEXT' , 'VECTOR']
+GroupTypes = ['GROUP']
+VectorTypes = ['BOOLEAN', 'ELLIPSE', 'LINE', 'REGULAR_POLYGON', 'STAR', 'VECTOR']
 
 
-	# print node
-	# unless node is undefined
-	# switch
-	# 	when data.node is 'DOCUMENT'
-	# 		print data.node
+class Rect extends Layer
+	constructor: (props={}) ->
+		_.assign props,
+			name: 'FigmaNodeRect'
+			# blending: getBlendingMode(options.node)
+
+		super props
+
+		Utils.define @, 'nodeType', props.nodeType
+
+
+getNodeTypeProps = (node) ->
+
+	return unless node is undefined
+
+		nodeType = null
+
+		isFrame = ->
+			nodeType = 'FRAME'
+
+		isVector = ->
+			nodeType = 'VECTOR'
+
+		types = 
+			'FRAME':			isFrame
+			'GROUP':			isFrame
+			'COMPONENT':		isFrame
+			'INSTANCE':			isFrame
+			'TEXT':				isVector
+			'BOOLEAN':			isVector
+			'STAR':				isVector
+			'ELLIPSE':			isVector
+			'LINE':				isVector
+			'REGULAR_POLYGON':	isVector
+			'VECTOR':			isVector
+
+
+
+		types[node.type]()
 
 Canvas = new Layer
 	size: Screen.size
 	backgroundColor: null
 
-# cache = {}
-
-# loadFigma = (id) =>
-#   new Promise((resolve, reject) ->
-#     if cache[id]
-#       console.log 'hit from cache', id
-#       resolve cache[id]
-#     else
-#       console.log 'fetching', id
-#       client.file(id).then((_ref) ->
-#         data = _ref.data
-#         cache[id] = data
-#         console.log 'stored', id
-#         resolve data
-#       ).catch ->
-#         reject()
-#     return
-# )
-
-client.file(fileurl).then(({data}) ->
-
-	# # print _.map data, getNodeType
-	# getNodeType data
-
-	# print _.find(data, (data) -> data.type is 'CANVAS' )
-
-	# print _.each data.document.children
+loadFigma(fileid).then((data) ->
 
 
-	data.document.children.forEach (canvas) ->
+	doc = data.document
 
+	doc.children.forEach (canvas, index) ->
 
-
-		canvas.children.forEach (rect, index) ->
-
-			# print rect.absoluteBoundingBox
-
-			r = new Rect
-				parent: Canvas
-				x: Align.center(rect.absoluteBoundingBox.x)
-				y: Align.center(rect.absoluteBoundingBox.y)
-				width: rect.absoluteBoundingBox.width
-				height: rect.absoluteBoundingBox.height
-				borderRadius: rect.cornerRadius
-				backgroundColor: getColorFromNode(rect).css()
-				blending: getBlendingMode(rect)
-				# rect: rect
-				opacity: 0
-
-			r.animate
-				opacity: 1
-				options:
-					time: 0.25
-					delay: 0.05 * index
-
-			# print r.size
-
+		nodes = canvas.children and canvas.children.filter (child) -> child.visible isnt false
+		nodes.forEach (node, index) ->
+			nodeProps = getNodeTypeProps node
+			console.log nodeProps
+				
 	Canvas.animate
 		backgroundColor: getColorFromDocument(data).css()
 
 	).catch (error) ->
 		throw Error error
 
-# function poll(fn, retries = Infinity, timeoutBetweenAttempts = 1000) {
-# 	return Promise.resolve()
-# 		.then(fn)
-# 		.catch(function retry(err) {
-# 			if (retries-- > 0)
-# 				return delay(timeoutBetweenAttempts)
-# 					.then(fn)
-# 					.catch(retry)
-# 			throw err
-# 		})
-# }
 
 getFramerVersion = () ->
 
@@ -198,28 +161,4 @@ getFramerVersion = () ->
 
 getFramerVersion()
 
-createDeviceComponent = () ->
-	comp = new DeviceComponent()
 
-	# DeviceComponent.Devices["test"] =
-	# 		"deviceType": "phone"
-	# 		"screenWidth": 720
-	# 		"screenHeight": 1000
-	# 		"deviceImageWidth": 800
-	# 		"deviceImageHeight": 1203
-
-	# comp.deviceType = "test"
-
-
-# class Airtable extends Framer.BaseClass
-
-# 	constructor: (options={}) ->
-# 		apiKey = options.apiKey ?= null
-# 		baseId = options.baseId ?= null
-# 		tableName = options.tableName ?= null
-# 		view = options.view ?= null
-
-
-# 		super options
-
-# 	request = (project) ->

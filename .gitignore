@@ -43,4 +43,4 @@ framerContentFromFigma.framer/modules/secret.coffee
 assets/
 node_modules/
 yarn-error.log
-/src/secret.coffee
+src/
