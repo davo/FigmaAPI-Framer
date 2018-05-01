@@ -42,5 +42,7 @@ framerContentFromFigma.framer/modules/secret.coffee
 
 assets/
 node_modules/
+package-lock.json
 yarn-error.log
 src/
+src/secret.coffee
